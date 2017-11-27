@@ -23,6 +23,12 @@ public class smashPlayer{
 
 	}
 
+	public String getName(){
+
+		return name;
+
+	}
+
 	public void addChar(String character){
 				
 		chars.add(new smashChar(character));
@@ -44,9 +50,10 @@ public class smashPlayer{
 
 		int selection = input.nextInt();
 
+		System.out.println("\n" + chars.get(selection-1).getName() + "'s Stats");
+
 		if(chars.get(selection-1).getPlays() != 0){
 
-			System.out.println("\n" + chars.get(selection-1).getName() + "'s Stats");
 			System.out.println("Wins: " + chars.get(selection-1).getWins());
 			System.out.println("Losses: " + chars.get(selection-1).getLosses());
 			System.out.println("Win %: " + chars.get(selection-1).Wpercent() + " %");
@@ -65,6 +72,36 @@ public class smashPlayer{
 
 	}
 
+	public void listStats(){
+
+		System.out.println();
+
+		for(int i=0; i < chars.size(); i++ ){
+
+			System.out.println("\n" + (i+1) + ". " + chars.get(i).getName() + "'s Stats");
+
+			if(chars.get(i).getPlays() != 0){
+
+				System.out.println("Wins: " + chars.get(i).getWins());
+				//System.out.println("Losses: " + chars.get(i).getLosses());
+				System.out.println("Win %: " + chars.get(i).Wpercent() + " %");
+				System.out.println("Kills: " + chars.get(i).getKills());
+				//System.out.println("Deaths: " + chars.get(i).getDeaths());
+
+				if(chars.get(i).getDeaths() == 0){
+					System.out.println("KD Ratio: " + chars.get(i).getKills());
+				}
+				else{
+					System.out.println("KD Ratio: " + chars.get(i).KDratio());
+				}
+			}
+			else{
+				System.out.println("No games played yet.");
+			}
+		}
+
+	}
+
 	public void getStats(){
 
 		int wins=0, losses=0, kills=0, deaths=0, plays=0;
@@ -78,9 +115,10 @@ public class smashPlayer{
 
 		}
 
+		System.out.println("\n" + name + "'s Stats");
+
 		if(plays != 0){
 
-			System.out.println("\n" + name + "'s Stats");
 			System.out.println("Wins: " + wins);
 			System.out.println("Losses: " + losses);
 			System.out.println("Win %: " + ((double)(wins))/((double)(plays))*100 + " %");
@@ -157,19 +195,8 @@ public class smashPlayer{
 
 	}
 
-
-
-
-
-
-
-	/*Methods:
-	list characters with wins
-	add char
-	list chars (with kills)
-	1 players full stats (Total: wins, losses, ratio%, kills, deaths, ratio%, eachChar: wins, losses, ratio%, kills, deaths, ratio%)
-	Everyones stats (1 player full stats x numOfPlyrs)
+	/*
+	Possible Extra Methods: 
 	*/
-
 
 }
